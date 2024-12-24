@@ -6,12 +6,20 @@ import fileUpload from "express-fileupload";
 import { connection } from "./database/connection.js";
 import { errorMiddleware } from "./middlewares/error.js";
 import userRouter from "./router/userRoutes.js"
+ import auctionItemRouter from "./router/auctionItemRoutes.js";
 
 
 const app = express();
 config({
     path:"./config/config.env",
 });
+
+// // Add logging middleware for debugging
+// app.use((req, res, next) => {
+//     console.log("Request files:", req.files);  // Log files
+//     console.log("Request body:", req.body);    // Log body data
+//     next(); // Pass control to the next middleware or route handler
+// });
 
 // use to connect frontend and backend by cors package
 app.use(cors({
@@ -33,11 +41,12 @@ app.use(
 
 //router connect
 app.use("/api/v1/user", userRouter);
+app.use("/api/v1/auctionitem", auctionItemRouter);
 
 // database connect
 connection();
 
 // error.js file 
-app.use(errorMiddleware)
+app.use(errorMiddleware);
 
 export default app;
