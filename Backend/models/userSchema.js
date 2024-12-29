@@ -12,7 +12,7 @@ const userSchema =new mongoose.Schema({
         type: String,
         selected:false,
         minLength: [8, "password must contain minimum 8 character"],
-        maxLength: [32, "password can not exceed from 32 charcater"]
+      
     },
     email: String,
     address: String,
@@ -24,7 +24,7 @@ const userSchema =new mongoose.Schema({
     profileImage: {
         public_id:{
             type: String,
-            required: false,
+            required: true,
         },
         url: {
             type: String,

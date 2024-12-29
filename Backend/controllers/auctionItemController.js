@@ -1,10 +1,11 @@
 import { Auction } from "../models/auctionSchema.js";
 import {User} from "../models/userSchema.js";
+import {Bid} from "../models/bidSchema.js"
 import {catchAsyncErrors} from "../middlewares/catchAsuncError.js";
 import ErrorHandler from "../middlewares/error.js";
 import {v2 as cloudinary} from "cloudinary";
 import mongoose from "mongoose";
-import { json } from "express";
+
 
 export const addNewAuctionItem = catchAsyncErrors(async(req,res,next) => {
 
@@ -122,11 +123,11 @@ export const getAuctionDetails = catchAsyncErrors(async(req,res,next) => {
     if(!auctionItem) {
         return next(new ErrorHandler("Auction not found", 404)); 
     }
-    const bidders = auctionItem.bids.sort((a,b) => b.bid - a.bid);
+    const bidders = auctionItem.bids.sort((a,b) => b.amount - a.amount);
     res.status(200).json({
         success: true,
         auctionItem,
-        bidders
+        bidders,
     });
 });
 
@@ -155,7 +156,7 @@ export const removeFromAuction = catchAsyncErrors(async(req,res,next) => {
     res.status(200).json({
         success:true,
         message: "Auction item deleted successfully",
-    })
+    });
 });
 
 
@@ -189,14 +190,31 @@ export const republishItem = catchAsyncErrors(async(req,res,next) => {
         return next(new ErrorHandler("Auction starting time must be less than ending time", 400 ));
     }
 
+
+    // ------------------------------------------------
+    if(auctionItem.highestBidder){
+        const highestBidder = await User.findById(auctionItem.highestBidder);
+        highestBidder.moneySpent -= auctionItem.currentBid;
+        highestBidder.auctionsWon -= 1;
+        highestBidder.save();
+    }
+     
+
     data.bids = [];
     data.commissionCalculated = false;
+    data.currentBid = 0;
+    data.highestBidder = null;
     
     auctionItem = await Auction.findByIdAndUpdate(id,data, {
         new : true,
         runValidators : true,
         useFindAndModify: false,
     });
+
+    await Bid.deleteMany({
+        auctionItems: auctionItem._id
+    });
+    
     const createdBy = await User.findByIdAndUpdate(
         req.user._id, 
         {unpaidCommission : 0 }, 

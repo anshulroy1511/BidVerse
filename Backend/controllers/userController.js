@@ -9,7 +9,7 @@ export const register =  catchAsyncErrors(async(req, res , next) => {
     if(!req.files || Object.keys(req.files).length === 0 ){
         
         // handle error by error handler-----------
-        return next(new ErrorHandler("profile image is required"), 400);
+        return next(new ErrorHandler("profile image is required",400));
         // return res.status(400).json({
         //     success:false,
         //     message:"profile image is required "
@@ -64,7 +64,8 @@ export const register =  catchAsyncErrors(async(req, res , next) => {
     if(isRegistered){
         return next(new ErrorHandler("user already reistered", 400));
     }
-   const cloudinaryResponse = await cloudinary.uploader.upload(profileImage.tempFilePath, {
+   const cloudinaryResponse = await cloudinary.uploader.upload(
+    profileImage.tempFilePath, {
     folder: "MERN_AUCTION_PLATFORM_USERS",
    }
    );
@@ -85,7 +86,7 @@ export const register =  catchAsyncErrors(async(req, res , next) => {
         address,
         role,
         profileImage: {
-            piblic_id : cloudinaryResponse.public_id,
+            public_id : cloudinaryResponse.public_id,
             url : cloudinaryResponse.secure_url,
         },
         paymentMethods : {
@@ -103,7 +104,7 @@ export const register =  catchAsyncErrors(async(req, res , next) => {
         },
     });
 
-    generateToken(user,"User Registered",201, res )
+    generateToken(user,"User Registered",201, res );
     
 });
 

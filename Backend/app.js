@@ -1,3 +1,5 @@
+// run backend :   cd backend  --> npm run dev
+
 import { config } from "dotenv";
 import express from "express"
 import cors from "cors"
@@ -9,7 +11,9 @@ import userRouter from "./router/userRoutes.js"
 import auctionItemRouter from "./router/auctionItemRoutes.js";
 import bidRouter from "./router/bidRoutes.js"
 import commissionRouter from "./router/commissionRouter.js"
-
+import superAdminRouter from "./router/superAdminRoutes.js"
+import {endedAuctionCron} from "./automation/endedAuctionCron.js"
+import { verifyCommissionCron } from "./automation/verifyCommissionCron.js";
 
 const app = express();
 config({
@@ -46,10 +50,14 @@ app.use("/api/v1/user", userRouter);
 app.use("/api/v1/auctionitem", auctionItemRouter);
 app.use("/api/v1/bid", bidRouter);
 app.use("/api/v1/commission", commissionRouter);
+app.use("/api/v1/superadmin", superAdminRouter);
 
-// database connect
+endedAuctionCron();
+verifyCommissionCron();
+
+// //database connect
 connection();
-
+ 
 // error.js file 
 app.use(errorMiddleware);
 

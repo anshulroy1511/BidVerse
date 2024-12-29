@@ -5,10 +5,10 @@ import { Auction } from "../models/auctionSchema.js";
 
 export  const checkAuctionEndTime = catchAsyncErrors(async(req,res,next) => {
     const {id} = req.params;
-    if(!mongoose.Type.ObjectId.isValid(id)){
+    if(!mongoose.Types.ObjectId.isValid(id)){
         return next(new ErrorHandler("Invalid ID format", 400 ));
     }
-    const auction = await Auction.find(id);
+    const auction = await Auction.findById(id);
     if(!auction) {
         return next(new ErrorHandler("Auction not found", 404));
     }

@@ -4,7 +4,6 @@ import ErrorHandler from "./error.js";
 import { catchAsyncErrors } from "./catchAsuncError.js";
 
 export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
-    console.log("Cookies: ", req.cookies);
 
     const token = req.cookies.token;
     if (!token) {
@@ -13,7 +12,6 @@ export const isAuthenticated = catchAsyncErrors(async (req, res, next) => {
 
     try {
         const decoded = jwt.verify(token, process.env.JWT_SECRET_KEY);
-        console.log("Decoded Token: ", decoded);
 
         req.user = await User.findById(decoded.id);
         if (!req.user) {
