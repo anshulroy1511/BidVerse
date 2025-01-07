@@ -62,16 +62,3 @@ export const sendEmail = async ({ email, subject, message }) => {
 //         return false;
 //     }
 // }
-
-
-
-// // 
-// SMTP_SERVICE = gmail
-
-// SMTP_PORT = 465
-
-// SMTP_HOST = smtp.gmail.com
-
-// SMTP_MAIL = royanshul151103@gmail.com
-
-// SMTP_PASSWORD="kjfzdnigxnwcrvmh"

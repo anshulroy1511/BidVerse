@@ -80,7 +80,7 @@ export const proofOfCommission = catchAsyncErrors(async(req,res,next) => {
     res.status(201).json({
         success: true,
         message:
-        "Your proof has been submitted successfully. We will review it and respomd to you within 24 hours.",
+        "Your proof has been submitted successfully. We will review it and respond to you within 24 hours.",
         commissionProof,
     });
 });
