@@ -18,7 +18,7 @@ const Card = ({imgSrc, title, startingBid,startTime, endTime, id}) => {
             };
         }else if(endDifference > 0){
             timeLeft={
-                type: "Starts In:",
+                type: "Ends In:",
                 days:Math.floor(endDifference/(1000* 60 *60* 24)),
                 hours: Math.floor((endDifference/(1000*60*60)) %24),
                 minutes: Math.floor((endDifference/1000/60)%60),
