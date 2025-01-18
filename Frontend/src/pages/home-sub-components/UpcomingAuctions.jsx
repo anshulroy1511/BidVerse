@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from 'react'
 import { RiAuctionFill } from "react-icons/ri";
 import { useSelector } from "react-redux";
@@ -41,41 +42,36 @@ const UpcomingAuctions = () => {
 {/* ------------------------------------------------------------------------------ */}
           <div className="flex flex-col gap-4 w-full lg:flex-1 2xl:flex-none 2xl:basis-64 2xl:flex-grow" >
             {
-              auctionsStartingToday.slice(0,2).map(element => {
+              auctionsStartingToday.slice(0,2).map((element) => {
                 return(
-                  <>
-                    <div key={element._id} 
-                     className="w-full flex flex-col gap-4 bg-white p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300">
-
-                        <div className='flex items-center gap-2'>
-                           <img 
-                          src= {element.image?.url} 
-                           alt={element.title} 
-                           className='w-16 h-16 2xl:w-10 2xl:h-10'
-                           />
-
-                         <p className="font-extralight text-[#111] text-[12px]">
-                           {element.title}
-                         </p>
-                        </div>
-
+                  <Link
+                  to={`/auction/item/${element._id}`}
+                    key={element._id}
+                    className="w-full flex flex-col gap-4 bg-white p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300"
+                  >
+                    <div className="flex items-center gap-2">
+                      <img
+                        src={element.image?.url}
+                        alt={element.title}
+                        className="w-16 h-16 2xl:w-10 2xl:h-10"
+                      />
+                      <p className="font-extralight text-[#111] text-[12px]">
+                        {element.title}
+                      </p>
+                    </div>
                     <div className="flex justify-between">
                       <p className="text-stone-600 font-semibold">
-                      Starting Bid:
+                        Starting Bid:
                       </p>{" "}
-
                       <p className="text-[#fdba88 font-semibold]">
-                      Rs. {element.startingBid}
+                        Rs. {element.startingBid}
                       </p>{" "}
                     </div>
-
                     <div className="flex flex-col">
                       <p className="text-stone-600 font-bold">Starting Time:</p>
-                      <p className="text-black text-[12px]">    Rs. {element.startTime}
-                      </p>{" "}
+                      <p className="text-black text-[12px]">{element.startTime}</p>
                     </div>
-                  </div>
-                  </>
+                  </Link>
                 )
               })
             }
@@ -85,39 +81,33 @@ const UpcomingAuctions = () => {
             {
               auctionsStartingToday.slice(2,4).map(element => {
                 return(
-                  <>
-                    <div key={element._id} 
-                     className="w-full flex flex-col gap-4 bg-white p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300">
-
-                        <div className='flex items-center gap-2'>
-                           <img 
-                          src= {element.image?.url} 
-                           alt={element.title} 
-                           className='w-16 h-16 2xl:w-10 2xl:h-10'
-                           />
-
-                         <p className="font-extralight text-[#111] text-[12px]">
-                           {element.title}
-                         </p>
-                        </div>
-
-                    <div className="flex justify-between">
-                      <p className="text-stone-600 font-semibold">
-                      Starting Bid:
-                      </p>{" "}
-
-                      <p className="text-[#fdba88 font-semibold]">
-                      Rs. {element.startingBid}
-                      </p>{" "}
-                    </div>
-
-                    <div className="flex flex-col">
-                      <p className="text-stone-600 font-bold">Starting Time:</p>
-                      <p className="text-black text-[12px]">    Rs. {element.startTime}
-                      </p>{" "}
-                    </div>
+                  <Link  to={`/auction/item/${element._id}`}
+                  key={element._id}
+                  className="w-full flex flex-col gap-4 bg-white p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300"
+                >
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={element.image?.url}
+                      alt={element.title}
+                      className="w-16 h-16 2xl:w-10 2xl:h-10"
+                    />
+                    <p className="font-extralight text-[#111] text-[12px]">
+                      {element.title}
+                    </p>
                   </div>
-                </>
+                  <div className="flex justify-between">
+                    <p className="text-stone-600 font-semibold">
+                      Starting Bid:
+                    </p>{" "}
+                    <p className="text-[#fdba88 font-semibold]">
+                      Rs. {element.startingBid}
+                    </p>{" "}
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-stone-600 font-bold">Starting Time:</p>
+                    <p className="text-black  text-[12px]">{element.startTime}</p>
+                  </div>
+                </Link>
                 )
               })
             }
@@ -128,39 +118,33 @@ const UpcomingAuctions = () => {
             {
               auctionsStartingToday.slice(4,6).map(element => {
                 return(
-                  <>
-                    <div key={element._id} 
-                     className="w-full flex flex-col gap-4 bg-white p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300">
-
-                        <div className='flex items-center gap-2'>
-                           <img 
-                          src= {element.image?.url} 
-                           alt={element.title} 
-                           className='w-16 h-16 2xl:w-10 2xl:h-10'
-                           />
-
-                         <p className="font-extralight text-[#111] text-[12px]">
-                           {element.title}
-                         </p>
-                        </div>
-
-                    <div className="flex justify-between">
-                      <p className="text-stone-600 font-semibold">
-                      Starting Bid:
-                      </p>{" "}
-
-                      <p className="text-[#fdba88 font-semibold]">
-                      Rs. {element.startingBid}
-                      </p>{" "}
-                    </div>
-
-                    <div className="flex flex-col">
-                      <p className="text-stone-600 font-bold">Starting Time:</p>
-                      <p className="text-black text-[12px]">    Rs. {element.startTime}
-                      </p>{" "}
-                    </div>
+                  <Link to={`/auction/item/${element._id}`}
+                  key={element._id}
+                  className="w-full flex flex-col gap-4 bg-white p-2 rounded-md 2xl:gap-2 hover:shadow-md transition-all duration-300"
+                >
+                  <div className="flex items-center gap-2">
+                    <img
+                      src={element.image?.url}
+                      alt={element.title}
+                      className="w-16 h-16 2xl:w-10 2xl:h-10"
+                    />
+                    <p className="font-extralight text-[#111] text-[12px]">
+                      {element.title}
+                    </p>
                   </div>
-                  </>
+                  <div className="flex justify-between">
+                    <p className="text-stone-600 font-semibold">
+                      Starting Bid:
+                    </p>{" "}
+                    <p className="text-[#fdba88 font-semibold]">
+                      Rs. {element.startingBid}
+                    </p>{" "}
+                  </div>
+                  <div className="flex flex-col">
+                    <p className="text-stone-600 font-bold">Starting Time:</p>
+                    <p className="text-black  text-[12px]">{element.startTime}</p>
+                  </div>
+                </Link>
                 )
               })
             }

@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { clearAllSuperAdminSliceErrors, getAllPaymentProofs, getAllUsers, getMonthlyRevenue } from '@/store/slices/superAdminSlice';
 import React, { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
@@ -23,7 +24,7 @@ const Dashboard = () => {
     const navigateTo = useNavigate();
 
     useEffect(() => {
-        if(user.role !== "Super Admin" || isAuthenticated){
+        if(user.role !== "Super Admin" || !isAuthenticated){
             navigateTo("/");
         }
     },[isAuthenticated])

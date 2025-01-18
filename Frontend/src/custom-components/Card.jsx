@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import React, { useEffect, useState } from 'react'
 import { Link } from "react-router-dom";
 
@@ -7,7 +9,7 @@ const Card = ({imgSrc, title, startingBid,startTime, endTime, id}) => {
         const startDifference = new Date(startTime) - now;
         const endDifference = new Date(endTime) - now;
         let timeLeft = {};
-
+        
         if(startDifference > 0) {
             timeLeft={
                 type: "Starts In:",
@@ -18,7 +20,7 @@ const Card = ({imgSrc, title, startingBid,startTime, endTime, id}) => {
             };
         }else if(endDifference > 0){
             timeLeft={
-                type: "Starts In:",
+                type: "Ends In:",
                 days:Math.floor(endDifference/(1000* 60 *60* 24)),
                 hours: Math.floor((endDifference/(1000*60*60)) %24),
                 minutes: Math.floor((endDifference/1000/60)%60),

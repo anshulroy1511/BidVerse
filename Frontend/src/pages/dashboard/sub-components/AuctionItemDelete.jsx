@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { deleteAuctionItem } from '@/store/slices/superAdminSlice';
 import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'

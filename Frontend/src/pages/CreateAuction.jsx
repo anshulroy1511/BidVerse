@@ -1,3 +1,4 @@
+/* eslint-disable react/no-unknown-property */
 import React,  { useEffect, useState } from 'react'
 import { createAuction } from "@/store/slices/auctionSlice";
 import DatePicker from "react-datepicker";
@@ -158,28 +159,28 @@ const CreateAuction = () => {
                 Auction Starting Time
               </label>
               <DatePicker
-                selected={startTime}
-                onChange={(date) => setStartTime(date)}
-                showTimeSelect
-                timeFormat="HH:mm"
-                timeIntervals={15}
-                dateFormat={"MMMM d, yyyy h,mm aa"}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none w-full"
-              />
+              selected={startTime ? new Date(startTime) : null}
+              onChange={(date) => setStartTime(date)}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              dateFormat={"MMMM d, yyyy h:mm aa"}
+              className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none w-full"
+          />
             </div>
             <div className="flex flex-col sm:flex-1">
               <label className="text-[16px] text-stone-600">
                 Auction End Time
               </label>
               <DatePicker
-                selected={endTime}
-                onChange={(date) => setEndTime(date)}
-                showTimeSelect
-                timeFormat="HH:mm"
-                timeIntervals={15}       // in minutes interval
-                dateFormat={"MMMM d, yyyy h,mm aa"}
-                className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none w-full"
-              />
+              selected={endTime ? new Date(endTime) : null}
+              onChange={(date) => setEndTime(date)}
+              showTimeSelect
+              timeFormat="HH:mm"
+              timeIntervals={15}
+              dateFormat={"MMMM d, yyyy h:mm aa"}
+              className="text-[16px] py-2 bg-transparent border-b-[1px] border-b-stone-500 focus:outline-none w-full"
+          />
             </div>
             </div>
 

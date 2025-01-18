@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React, { useState } from 'react'
 import {RiAuctionFill} from "react-icons/ri";
 import {MdLeaderboard, MdDashboard} from "react-icons/md";

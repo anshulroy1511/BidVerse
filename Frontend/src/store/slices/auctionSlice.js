@@ -1,3 +1,5 @@
+/* eslint-disable no-self-assign */
+/* eslint-disable no-unused-vars */
 // get all auction items ------------------------------------------------
 import { createSlice } from "@reduxjs/toolkit";
 import axios from "axios";

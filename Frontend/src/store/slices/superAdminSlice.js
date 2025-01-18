@@ -1,3 +1,5 @@
+/* eslint-disable no-self-assign */
+/* eslint-disable no-unused-vars */
 import axios from "axios"
 import { createSlice } from "@reduxjs/toolkit"
 import { toast } from "react-toastify"
